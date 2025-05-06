@@ -1,0 +1,13 @@
+ecommerce-auth/
+│
+├── app.py                     # Ana Flask uygulama dosyası
+├── config.py                  # Veritabanı ve JWT ayarları
+├── db.py                      # MySQL bağlantı yardımcı dosyası
+├── auth/
+│   ├── __init__.py
+│   ├── routes.py              # Register & Login endpoint'leri
+│   └── utils.py               # Şifreleme ve JWT işlemleri
+├── middleware/
+│   └── auth_required.py       # JWT doğrulama decorator'u
+├── requirements.txt           # Gerekli pip paketleri
+└── README.md
