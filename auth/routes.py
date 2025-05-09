@@ -1,4 +1,3 @@
-# Register & Login endpoint'leri
 # auth/routes.py
 from flask import Blueprint, request, jsonify
 from db import get_connection

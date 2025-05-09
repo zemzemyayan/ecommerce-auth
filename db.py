@@ -1,4 +1,3 @@
-# MySQL bağlantı yardımcı dosyası
 # db.py
 import mysql.connector
 from config import MYSQL_CONFIG

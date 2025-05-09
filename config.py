@@ -1,4 +1,3 @@
-# Veritabanı ve JWT ayarları
 # config.py
 
 MYSQL_CONFIG = {

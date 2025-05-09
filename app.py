@@ -1,11 +1,14 @@
-# Ana Flask uygulama dosyası
 # app.py
 from flask import Flask, jsonify
 from auth.routes import auth_bp
 from middleware.auth_required import token_required
-
 app = Flask(__name__)
 app.register_blueprint(auth_bp, url_prefix='/auth')
+
+from product.routes import product_bp
+app.register_blueprint(product_bp)
+
+
 
 @app.route('/')
 def home():
