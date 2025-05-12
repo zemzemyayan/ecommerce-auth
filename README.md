@@ -1,4 +1,4 @@
-### E-Ticaret Uygulaması Backend Dokümantasyonu
+# E-Ticaret Uygulaması Backend Dokümantasyonu
 
 ## Proje Tanımı
 Bu projede kullanıcı doğrulama, ürün yönetimi ve sepet işlemleri için hibrit bir veri tabanı yapısı kullanılmıştır. Kullanıcılar MySQL veritabanına kayıt olur ve JWT tabanlı bir sistemle giriş yapar. Sepet işlemleri ise MongoDB ile yönetilmektedir.
@@ -8,21 +8,21 @@ MySQL ve MongoDB entegrasyonu ile JWT tabanlı kimlik doğrulama ve rol tabanlı
 
 ---
 
-#  Temel Özellikler
+##  Temel Özellikler
 
 ##  Kimlik Doğrulama
 - JWT token tabanlı giriş sistemi
 - Token içinde rol bilgisi taşınır (`customer` veya `supplier`)
 
-###  Veritabanı Entegrasyonu
+##  Veritabanı Entegrasyonu
 - **MySQL**: Kullanıcı bilgileri (`user_id`, `email`, `password`, `role`)
 - **MongoDB**: Sepet ve ürün verileri (referanslı `userId` ile)
 
-###  Rol Tabanlı Sistem
+##  Rol Tabanlı Sistem
 - `customer`: Sepet işlemleri, profil güncelleme
 - `supplier`: Ürün ekleme/silme/güncelleme
 
-###  Sepet Yönetimi
+## Sepet Yönetimi
 - MongoDB'de tutulan sepet verileri
 - Soft-delete özelliği ile ürün silme etkisi
 
@@ -37,9 +37,9 @@ MySQL ve MongoDB entegrasyonu ile JWT tabanlı kimlik doğrulama ve rol tabanlı
 | Bcrypt          | Şifre hashleme              |
 
 ---
-### API Dokümantasyonu
+## API Dokümantasyonu
 ## Kimlik Doğrulama
-# Kayıt Ol
+### Kayıt Ol
 POST /auth/register
 Content-Type: application/json
 
@@ -48,7 +48,7 @@ Content-Type: application/json
   "password": "Sifre123!",
   "role": "customer"
 }
-# Giriş Yap
+### Giriş Yap
 POST /auth/login
 Content-Type: application/json
 
@@ -56,7 +56,7 @@ Content-Type: application/json
   "email": "kullanici@mail.com",
   "password": "Sifre123!"
 }
-# Şifre Sıfırlama
+### Şifre Sıfırlama
 POST /auth/forgot-password
 Content-Type: application/json
 
@@ -64,7 +64,7 @@ Content-Type: application/json
   "email": "kullanici@mail.com"
 }
 --> Not: İstek sonucunda terminalde şifre sıfırlama için token gelecektir.
-# Yeni Şifre Belirle
+### Yeni Şifre Belirle
 POST /auth/reset-password
 Content-Type: application/json
 
@@ -72,7 +72,7 @@ Content-Type: application/json
   "token": "terminalde-gorunen-token",
   "newPassword": "YeniSifre456!"
 }
-# Profil Güncelleme
+### Profil Güncelleme
 PUT /users/profile
 Content-Type: application/json
 Authorization: Bearer <JWT_TOKEN>
@@ -82,14 +82,14 @@ Authorization: Bearer <JWT_TOKEN>
   "password": "GuncelSifre789!"
 }
 
-## Müşteri İşlemleri
+#### Müşteri İşlemleri
 --> Not: Kullanıcı(müşteri) önce giriş yapar ve JWT_TOKEN İLE işlemlerini gerçekleştirir.
 
-# Sepeti Görüntüle
+### Sepeti Görüntüle
 GET /cart
 Authorization: Bearer <JWT_TOKEN>
 
-# Sepete Ürün Ekle
+### Sepete Ürün Ekle
 POST /cart
 Content-Type: application/json
 Authorization: Bearer <JWT_TOKEN>
@@ -98,14 +98,14 @@ Authorization: Bearer <JWT_TOKEN>
   "_id": "mongodb_product_id",
   "quantity": 2
 }
-# Sepetten Ürün Çıkar
+### Sepetten Ürün Çıkar
 DELETE /cart/:productId
 Authorization: Bearer <JWT_TOKEN>
 
-## Tedarikçi İşlemleri (Sadece supplier rolü)
+#### Tedarikçi İşlemleri (Sadece supplier rolü)
 --> Not: Kullanıcı(tedarikçi) önce giriş yapar ve JWT_TOKEN İLE işlemlerini gerçekleştirir.
 
-# Yeni Ürün Ekle
+### Yeni Ürün Ekle
 POST /supplier/products
 Content-Type: application/json
 Authorization: Bearer <JWT_TOKEN>
@@ -116,7 +116,7 @@ Authorization: Bearer <JWT_TOKEN>
   "price": 14999.99
 }
 
-# Ürün Güncelle
+### Ürün Güncelle
 PUT /supplier/products/:id
 Content-Type: application/json
 Authorization: Bearer <JWT_TOKEN>
@@ -125,11 +125,11 @@ Authorization: Bearer <JWT_TOKEN>
   "price": 89.99
 }
 
-# Ürün Sil (Soft-Delete)
+### Ürün Sil (Soft-Delete)
 DELETE /supplier/products/:id
 Authorization: Bearer <JWT_TOKEN>
 
-# Ürünleri Listeleme
+### Ürünleri Listeleme
 GET http://127.0.0.1:5000/product
 Headers:
 Authorization: Bearer <token>
@@ -144,7 +144,7 @@ Beklenen Yanıt:
 ]
 
 
-### ❗ Önemli Notlar
+## ❗ Önemli Notlar
 ⚠️ Şifre Sıfırlama:
 Şifre sıfırlama linkleri e-posta yerine terminale yazdırılır. Geliştirme ortamında test için bu şekilde tasarlanmıştır.
 
