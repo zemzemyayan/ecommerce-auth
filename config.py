@@ -1,5 +1,7 @@
 # config.py
 
+# config.py
+
 MYSQL_CONFIG = {
     "host": "localhost",
     "user": "root",
@@ -8,3 +10,7 @@ MYSQL_CONFIG = {
 }
 
 SECRET_KEY = "supergizli123"  # JWT için
+
+# Flask-JWT-Extended yapılandırması
+JWT_SECRET_KEY = SECRET_KEY  # JWT için gizli anahtar
+

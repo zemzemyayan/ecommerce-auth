@@ -2,6 +2,10 @@
 from flask import Blueprint, request, jsonify
 from db import get_connection
 from auth.utils import hash_password, check_password, create_token
+from flask import request, jsonify
+from flask_jwt_extended import create_access_token
+from auth.utils import check_password
+
 
 auth_bp = Blueprint('auth', __name__)
 
@@ -24,11 +28,12 @@ def register():
     except:
         return jsonify({"message": "Kayıt başarısız!"}), 400
 
+
 @auth_bp.route('/login', methods=['POST'])
 def login():
-    data = request.json
-    email = data['email']
-    password = data['password']
+    data = request.get_json()
+    email = data.get('email')
+    password = data.get('password')
 
     conn = get_connection()
     cursor = conn.cursor(dictionary=True)
@@ -36,6 +41,8 @@ def login():
     user = cursor.fetchone()
 
     if user and check_password(password, user['password']):
-        token = create_token(user['id'], user['role'])
-        return jsonify({"token": token})
+        # ID'yi string'e çeviriyoruz
+        access_token = create_access_token(identity=str(user['id']))
+        return jsonify({"access_token": access_token}), 200
+
     return jsonify({"message": "Geçersiz giriş"}), 401

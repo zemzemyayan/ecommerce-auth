@@ -1,13 +1,24 @@
 # app.py
 from flask import Flask, jsonify
+
+import config
 from auth.routes import auth_bp
 from middleware.auth_required import token_required
+from flask_jwt_extended import JWTManager
+from config import JWT_SECRET_KEY  # config.py dosyasındaki JWT_SECRET_KEY'yi alıyoruz
 app = Flask(__name__)
+# JWT için yapılandırmayı Flask uygulamasına ekliyoruz
+app.config['JWT_SECRET_KEY'] = JWT_SECRET_KEY
+jwt = JWTManager(app)
+
+
 app.register_blueprint(auth_bp, url_prefix='/auth')
 
 from product.routes import product_bp
 app.register_blueprint(product_bp)
 
+from cart.routes import cart_bp
+app.register_blueprint(cart_bp, url_prefix='/api')
 
 
 @app.route('/')
