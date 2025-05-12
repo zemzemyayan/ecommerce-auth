@@ -1,4 +1,4 @@
-# E-Ticaret Uygulaması Backend Dokümantasyonu
+### E-Ticaret Uygulaması Backend Dokümantasyonu
 
 ## Proje Tanımı
 Bu projede kullanıcı doğrulama, ürün yönetimi ve sepet işlemleri için hibrit bir veri tabanı yapısı kullanılmıştır. Kullanıcılar MySQL veritabanına kayıt olur ve JWT tabanlı bir sistemle giriş yapar. Sepet işlemleri ise MongoDB ile yönetilmektedir.
@@ -8,9 +8,9 @@ MySQL ve MongoDB entegrasyonu ile JWT tabanlı kimlik doğrulama ve rol tabanlı
 
 ---
 
-##  Temel Özellikler
+#  Temel Özellikler
 
-###  Kimlik Doğrulama
+##  Kimlik Doğrulama
 - JWT token tabanlı giriş sistemi
 - Token içinde rol bilgisi taşınır (`customer` veya `supplier`)
 
