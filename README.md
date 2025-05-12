@@ -14,7 +14,7 @@ MySQL ve MongoDB entegrasyonu ile JWT tabanlı kimlik doğrulama ve rol tabanlı
 - JWT token tabanlı giriş sistemi
 - Token içinde rol bilgisi taşınır (`customer` veya `supplier`)
 
-### 🗃 Veritabanı Entegrasyonu
+###  Veritabanı Entegrasyonu
 - **MySQL**: Kullanıcı bilgileri (`user_id`, `email`, `password`, `role`)
 - **MongoDB**: Sepet ve ürün verileri (referanslı `userId` ile)
 
